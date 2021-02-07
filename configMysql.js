@@ -3,15 +3,15 @@ const mysql = require('mysql');
 const config = {
     host : 'localhost',
     user : 'user.nodejs',
-    database: 'estancia',
-    password: 'IvE1357Nd!',
+    database: 'programacionweb1',
+    password: '12345',
 };
 
 const conn = mysql.createConnection(config);
 
 conn.connect(function(err) {
     if (err) throw err;
-    console.log('Conexión a la base de datos exitosa!');
+    console.log('*Conexión establecida*');
 });
 
 module.exports = conn;
