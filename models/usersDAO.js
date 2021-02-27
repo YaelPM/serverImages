@@ -12,17 +12,6 @@ module.exports = {
                 callback(null)
         })
     },
-    findByPassword : (password, callback) => {
-        let sql = 'SELECT * FROM User WHERE password=?'
-        bd.query(sql,password, (err, data) => {
-            if (err) throw err
-
-            if (data.length>0)
-                callback(data[0])
-            else
-                callback(null)
-        })
-    },
 
     getAllUsers : (login, callback) => {
         let sql = 'SELECT * FROM User'
