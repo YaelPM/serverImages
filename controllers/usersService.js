@@ -15,7 +15,7 @@ const usernameValidate = (req, res) => {
         catch(Err) {
             res.send({
                 status: false,
-                message: 'Usuario incorrecto'
+                message: 'Usuario disponible'
             })
         }
     })

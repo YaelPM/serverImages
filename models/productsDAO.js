@@ -1,10 +1,10 @@
 const bd = require('../configMysql')
 
 module.exports = {
-    insertRol : (rol, callback) => {
-        let sql = 'INSERT INTO roles SET ?'
-        console.log(rol);
-        bd.query(sql, rol, (err, data) => {
+    insertProduct : (product, callback) => {
+        let sql = 'INSERT INTO productos SET ?'
+        console.log(product);
+        bd.query(sql, product, (err, data) => {
             console.log(err);
             if (err)
 
@@ -13,8 +13,8 @@ module.exports = {
                 return callback(data)
         })
     },
-    deleteRol : (id, callback) => {
-        let sql = 'DELETE FROM roles WHERE idRol = ?'
+    deleteProduct : (id, callback) => {
+        let sql = 'DELETE FROM productos WHERE idProducto = ?'
         bd.query(sql, id, (err, data) => {
             console.log(err);
             if (err)
@@ -24,8 +24,8 @@ module.exports = {
                 return callback(data)
         })
     },
-    getAllRoles : (callback) => {
-        let sql = 'SELECT * FROM roles'
+    getAllProducts : (callback) => {
+        let sql = 'SELECT * FROM productos'
         bd.query(sql, (err, data) => {
             if (err) throw err
             if (data.length>0)

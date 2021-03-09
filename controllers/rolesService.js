@@ -1,5 +1,21 @@
 const rolesDAO = require('../models/rolesDAO')
 
+const getRoles = (req, res) =>{
+    console.log("entro a getRoles")
+    rolesDAO.getAllRoles((data) => {
+        res.send({
+            status: true,
+            message: 'Roles',
+            datos: data
+        })
+    }, err => {
+        res.send({
+            status:false,
+            message: 'Ha ocurrido un error al ver los roles',
+            errorMessage: err
+        })
+    })
+}
 const addRol = (req, res) =>{
     console.log("entro a addRol")
     const rolbd = {
@@ -39,5 +55,6 @@ const deleteRol = (req, res) => {
 }
 module.exports = {
     addRol,
-    deleteRol
+    deleteRol,
+    getRoles
 }
