@@ -20,7 +20,7 @@ const addRol = (req, res) =>{
     console.log("entro a addRol")
     const rolbd = {
         rol : req.body.rol,
-        descripcion: req.body.descripcion
+        description: req.body.description
     }
     rolesDAO.insertRol(rolbd, (data) => {
         res.send({
