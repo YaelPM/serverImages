@@ -54,8 +54,32 @@ const deleteProduct = (req, res) => {
         }
     })
 }
+const updateProduct = (req, res) =>{
+
+    const product = {
+        idCategoria : req.body.idCategoria,
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+        imagen: req.body.imagen
+    }
+    const id= req.body.idProducto
+
+    productsDAO.updateProduct(product, id, (data) => {
+        res.send({
+            status: true,
+            message: 'producto actualizado exitosamente'
+        })
+    }, err => {
+        res.send({
+            status:false,
+            message: 'Ha ocurrido un error al actualizar producto',
+            errorMessage: err
+        })
+    })
+}
 module.exports = {
     addProduct,
     deleteProduct,
-    getProduct
+    getProduct,
+    updateProduct
 }

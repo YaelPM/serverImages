@@ -13,6 +13,17 @@ module.exports = {
                 return callback(data)
         })
     },
+    updateProduct : (product, idProduct, callback) => {
+        let sql = 'UPDATE productos SET ? WHERE idProducto = ?'
+        bd.query(sql, [product, idProduct], (err, data) => {
+            console.log(err);
+            if (err)
+
+                return callback(null)
+            else
+                return callback(data)
+        })
+    },
     deleteProduct : (id, callback) => {
         let sql = 'DELETE FROM productos WHERE idProducto = ?'
         bd.query(sql, id, (err, data) => {
