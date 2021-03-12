@@ -15,6 +15,29 @@ const getProduct = (req, res) =>{
         })
     })
 }
+const getProductXCategory = (req, res) => {
+
+    productsDAO.getProductCategory(req.params.idCategoria, (data) =>{
+        try {
+            if (!data) throw new Err("Hubo un error en el proceso")
+            if (data.affectedRows === 0) throw new Err(`No hay datos`)
+            if (data!=null){
+                res.send({
+                    status: true,
+                    message: `Lista de productos`,
+                    datos:data
+                })
+            }
+
+        }
+        catch (Err) {
+            res.send({
+                status: false,
+                message: "no hay lista"
+            })
+        }
+    })
+}
 const addProduct = (req, res) =>{
     console.log("add ok")
     const product = {
@@ -37,7 +60,7 @@ const addProduct = (req, res) =>{
     })
 }
 const deleteProduct = (req, res) => {
-    productsDAO.deleteProduct(req.params.idRol, (data) =>{
+    productsDAO.deleteProduct(req.params.idProduct, (data) =>{
         try {
             if (!data) throw new Err("El Producto no existe")
 
@@ -81,5 +104,6 @@ module.exports = {
     addProduct,
     deleteProduct,
     getProduct,
-    updateProduct
+    updateProduct,
+    getProductXCategory
 }

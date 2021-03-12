@@ -3,7 +3,7 @@ const configurationServer = require('../ConfigServer')
 
 const generateToken = (user) => {
     let userToken = {
-        idUser: user.idUSer,
+        idUser: user.idUser,
         idRol: user.idRol,
         name: user.nombre
     }

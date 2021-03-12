@@ -24,10 +24,25 @@ module.exports = {
                 return callback(data)
         })
     },
+    getProductCategory : (idcategory, callback) => {
+        let sql = 'SELECT * FROM productos WHERE idCategoria = ?'
+        console.log("sql: "+idcategory)
+        bd.query(sql, idcategory, (err, data) => {
+
+            try {
+                if (err) throw new Err('Error en la eliminación');
+                return callback(data)
+            }
+            catch (Err) {
+                return callback(null)
+            }
+        })
+    },
     deleteProduct : (id, callback) => {
         let sql = 'DELETE FROM productos WHERE idProducto = ?'
         bd.query(sql, id, (err, data) => {
             console.log(err);
+            console.log(id)
             if (err)
 
                 return callback(null)

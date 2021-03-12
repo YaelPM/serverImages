@@ -26,7 +26,7 @@ const login = (req,res) => {
     userDAO.findByUsername(login, (data) => {
         if (data) {
             if (bcrypt.compareSync(password, data.password)){
-                if(data.idRol===1){
+                if(data.idRol===3){
                     res.send({
                         status: true,
                         message: 'Contraseña correcta',
@@ -53,39 +53,45 @@ const login = (req,res) => {
         }
     })
 }
-const signup = (req, res) => {
+const verifyToken = (req, res) => {
     if (req.user) {
-        const user = {
-            idRol : req.body.idRol,
-            nombre: req.body.nombre,
-            apellido : req.body.apellido,
-            login : req.body.login,
-            password : bcrypt.hashSync(req.body.password,10)
-        }
-
-        userDAO.insertUser(user, (data) => {
-            res.send({
-                status: true,
-                message: 'Usuario creado exitosamente'
-            })
-        }, err => {
-            res.send({
-                status:false,
-                message: 'Ha ocurrido un error al crear la cuenta de usuario',
-                errorMessage: err
-            })
+        res.send({
+            status:true,
+            message: 'Token activo',
+        })
+    }else{
+        res.send({
+            status:false,
+            message: 'Token inactivo',
         })
     }
-    else {
-    res.send({
-        status:false,
-        message: 'Este servicio requiere el uso de un Token válido, contactar al administrador',
-        error: '100. Falta token'
-    })
+}
+const signup = (req, res) => {
+    const user = {
+        idRol : req.body.idRol,
+        nombre: req.body.nombre,
+        apellido : req.body.apellido,
+        login : req.body.login,
+        password : bcrypt.hashSync(req.body.password,10)
     }
+
+    userDAO.insertUser(user, (data) => {
+        res.send({
+            status: true,
+            message: 'Usuario creado exitosamente'
+        })
+    }, err => {
+        res.send({
+            status:false,
+            message: 'Ha ocurrido un error al crear la cuenta de usuario',
+            errorMessage: err
+        })
+    })
+
 }
 module.exports = {
     usernameValidate,
     signup,
-    login
+    login,
+    verifyToken
 }
