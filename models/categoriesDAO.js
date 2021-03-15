@@ -1,10 +1,10 @@
 const bd = require('../configMysql')
 
 module.exports = {
-    insertCategories: (product, callback) => {
+    insertCategories: (category, callback) => {
         let sql = 'INSERT INTO categorias SET ?'
-        console.log(product);
-        bd.query(sql, product, (err, data) => {
+        console.log(category);
+        bd.query(sql, category, (err, data) => {
             console.log(err);
             if (err)
 
@@ -15,7 +15,7 @@ module.exports = {
     },
 
     deleteCategories : (id, callback) => {
-        let sql = 'DELETE FROM categorias WHERE idcategorias = ?'
+        let sql = 'DELETE FROM categorias WHERE idCategoria = ?'
         bd.query(sql, id, (err, data) => {
             console.log(err);
             if (err)
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     getAllCategories : (callback) => {
-        let sql = 'SELECT * FROM categories'
+        let sql = 'SELECT * FROM categorias'
         bd.query(sql, (err, data) => {
             if (err) throw err
             if (data.length>0)
