@@ -2,8 +2,8 @@ const bd = require('../configMysql')
 
 module.exports = {
     findByUsername : (login, callback) => {
-        let sql = 'SELECT * FROM User WHERE login=?'
-        bd.query(sql,login, (err, data) => {
+        let sql = 'SELECT * FROM user WHERE login=?'
+        bd.query(sql, login, (err, data) => {
             if (err) throw err
 
             if (data.length>0)
@@ -12,9 +12,8 @@ module.exports = {
                 callback(null)
         })
     },
-
     getAllUsers : (login, callback) => {
-        let sql = 'SELECT * FROM User'
+        let sql = 'SELECT * FROM user'
         bd.query(sql,login, (err, data) => {
             if (err) throw err
             if (data.length>0)

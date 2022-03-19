@@ -26,7 +26,6 @@ router.use('/', (req, res, next) => {
 router.get('/usernameValidate/:login',usersService.usernameValidate)
 router.post('/signup',usersService.signup)
 router.post('/login',usersService.login)
-router.get('/verifyToken',usersService.verifyToken)
 
 module.exports = router;
 
