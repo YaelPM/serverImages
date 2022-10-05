@@ -47,22 +47,22 @@ const getImages = async (req, res) => {
     console.log(iduser)
 
     await imageDAO.getImages(iduser, (data) => {
-        console.log(data)
+        
         try {
             if (!data) throw new Err("No hay imagenes de cargados por el usuario")
 
-            const crash = fs.readdirSync(path.join(__dirname, '../public/'))
+            const crash = fs.readdirSync(path.join(__dirname, '../images/'))
 
             for (let index = 0; index < crash.length; index++) {
                 const element = crash[index];
-                fs.unlinkSync(path.join(__dirname, '../public/' + element))
+                fs.unlinkSync(path.join(__dirname, '../images/' + element))
             }
-
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
-                fs.writeFileSync(path.join(__dirname, "../public/" + element.idimages + '-image.png'), element.data)
+                console.log(element)
+                fs.writeFileSync(path.join(__dirname, "../images/" + element.idimages + '-image.png'), element.data)
             }
-            const dir = fs.readdirSync(path.join(__dirname, '../public/'))
+            const dir = fs.readdirSync(path.join(__dirname, '../images/'))
             res.send({
                 status: true,
                 message: 'Imagenes encontradas',
